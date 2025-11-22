@@ -1,0 +1,227 @@
+:root {
+    /* Colors */
+    --color-primary: #667eea;
+    --color-secondary: #764ba2;
+    --color-success: #48bb78;
+    --color-success-dark: #38a169;
+    --color-text-dark: #2d3748;
+    --color-border-light: #e2e8f0;
+    --color-white: #ffffff;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+
+    /* Border Radius */
+    --radius-sm: 10px;
+    --radius-lg: 20px;
+
+    /* Box Shadow */
+    --shadow-sm: 0 3px 10px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Use CSS variables for background and min-height */
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-lg);
+    overflow-x: hidden;
+}
+
+.container {
+    /* Use CSS variables for padding, border-radius, and box-shadow */
+    background: rgba(255, 255, 255, 0.95);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 500px;
+    margin-top: var(--spacing-lg);
+}
+
+h1 {
+    /* Use CSS variables for color and spacing */
+    color: var(--color-text-dark);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: 2.5rem;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+}
+
+input {
+    /* Use CSS variables for border color and radius */
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--color-border-light);
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    /* Use CSS variables for focus state */
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+button {
+    /* Use CSS variables for background colors */
+    background: linear-gradient(45deg, var(--color-success), var(--color-success-dark));
+    color: var(--color-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    cursor: pointer;
+    /* Performance optimization: use transform for hover effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    width: 100%;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.messages-container {
+    margin-top: var(--spacing-lg);
+}
+
+.message {
+    /* Use CSS variables for padding, border-radius, and box-shadow */
+    background: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-sm);
+    opacity: 0;
+    /* Performance optimization: use transform for animation */
+    transform: translateY(20px);
+    animation: slideIn 0.5s ease forwards;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.user-mentions {
+    margin-top: var(--spacing-lg);
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.user-mention {
+    /* Use CSS variables for padding, border-radius, and box-shadow */
+    background: rgba(255, 255, 255, 0.9);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    /* Performance optimization: use transform for animation */
+    transform: translateX(100%);
+    animation: slideFromRight 0.5s ease forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations are already using transform, which is good for performance */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.pulse {
+    /* Performance optimization: use transform for animation */
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.followers-count {
+    /* Use CSS variables for color and spacing */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-success);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Kept as is, close to var(--spacing-sm) */
+}
+
+.avatar {
+    /* Use CSS variables for background */
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: var(--color-border-light);
+}
+
+.username {
+    /* Use CSS variables for color */
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-md);
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .user-mention {
+        padding: var(--spacing-xs);
+        font-size: 0.9rem;
+    }
+
+    .followers-count {
+        font-size: 1rem;
+    }
+}

